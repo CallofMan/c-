@@ -32,10 +32,8 @@ void valueResult(int heightofTower, int seconds)
 	
 	if (heightBall > 0)
 		cout << "At " << seconds << " seconds, the ball is at height: " << heightBall << " meters" << endl;
-	else if (heightBall <= 0)
+	else
 		cout << "At " << seconds << " seconds the ball is on the ground." << endl;
-	else if (seconds == 0)
-		cout << "At " << seconds << " seconds, the ball is at height: 100 meters" << endl;
 }
 
 int main()
