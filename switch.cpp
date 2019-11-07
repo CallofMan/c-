@@ -24,6 +24,7 @@ int main()
 {
 	using namespace std;
 
+	/*
 	cout << "Enter a first integer number: ";
 	int x;
 	cin >> x;
@@ -33,6 +34,17 @@ int main()
 	cout << "Enter a sign: ";
 	char sign;
 	cin >> sign;
+	*/
+
+	cout << "Enter aт expression (example: 1 + 123 or 1300 % 1200): ";
+
+	int x;
+	int y;
+	char sign;
+
+	cin >> x;
+	cin >> sign;
+	cin >> y;
 
 	cout << x << " " << sign << " " << y << " = " << calculate(x, y, sign) << endl;
 
