@@ -17,7 +17,7 @@ int* arrayRandom()
 		cout << "Enter length of array \n";
 		cin >> lengthArray;
 
-		if (cin.fail() || lengthArray < 0)
+		if (cin.fail() || lengthArray <= 0)
 		{
 			cin.clear();
 			cin.ignore(32767, '\n');
