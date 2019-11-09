@@ -26,6 +26,8 @@ int* arrayRandom()
 		else break;
 	}
 
+	cout << endl;
+
 	// создаю динамический массив
 	int* arrayNumbers = new int[lengthArray];
 
@@ -37,6 +39,8 @@ int* arrayRandom()
 	random_device (rd);
 	mt19937 mt(rd());
 	uniform_int_distribution<int> dist(1, lengthArray);
+
+	cout << "Unsort array: " << endl;
 
 	while (index != lengthArray)
 	{
@@ -64,23 +68,31 @@ int* arrayRandom()
 			index++;
 		}
 	}
+
+	cout << endl;
+
 	return arrayNumbers;
 }
 
 // сортировка пузырьком
 int* arraySort(int* arrayRandom)
 {
+	using std::swap;
+	using std::cout;
+	using std::endl;
+
 	int temp = 0;
 	bool key = true;
+	int iteration = 0;
+	// чтобы после каждой новой "полной" итерации не проверять последний (предпоследний и так далее...) элемент массива, так как он уже отсортирован
+	int latestElement = 1;
 
 	while (key == true)
 	{
-		using std::swap;
-
 		// если все элементы отсортированы, то переменная не изменится и сортировка закончится
 		key = false;
 
-		for (int i = 0; i < lengthArray - 1; i++)
+		for (int i = 0; i < lengthArray - latestElement; i++)
 		{
 			// если правое число больше левого, то меняю их местами
 			if (arrayRandom[i + 1] < arrayRandom[i])
@@ -96,7 +108,14 @@ int* arraySort(int* arrayRandom)
 				key = true;
 			}
 		}
+
+		if (key == true) ++iteration;
+
+
+		++latestElement;
 	}
+
+	cout << "Early termination on iteration: " << iteration << endl << endl;
 
 	return arrayRandom;
 }
@@ -107,7 +126,7 @@ int main()
 
 	int* sortedArray = arraySort(arrayRandom());
 
-	cout << endl;
+	cout << "Sort array: " << endl;
 
 	// просто вывод отсортированного массива
 	for (int i = 0; i < lengthArray; i++)
