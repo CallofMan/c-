@@ -8,7 +8,7 @@
 int lengthArray = 0;
 
 // заполняю массив рандомным неповторяющимися числами, длина массива зависит от длины, введённой пользователем
-int* arrayRandom()
+int  *arrayRandom()
 {
 	using namespace std;
 
@@ -29,7 +29,7 @@ int* arrayRandom()
 	cout << endl;
 
 	// создаю динамический массив
-	int* arrayNumbers = new int[lengthArray];
+	int *arrayNumbers = new int[lengthArray];
 
 	int index = 0;
 	bool key = true;
@@ -75,7 +75,7 @@ int* arrayRandom()
 }
 
 // сортировка пузырьком
-int* arraySort(int* arrayRandom)
+int *arraySort(int *arrayRandom)
 {
 	using std::swap;
 	using std::cout;
