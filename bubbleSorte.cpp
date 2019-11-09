@@ -12,8 +12,19 @@ int* arrayRandom()
 {
 	using namespace std;
 
-	cout << "Enter length of array \n";
-	cin >> lengthArray;
+	while (true)
+	{
+		cout << "Enter length of array \n";
+		cin >> lengthArray;
+
+		if (cin.fail() || lengthArray < 0)
+		{
+			cin.clear();
+			cin.ignore(32767, '\n');
+			cout << "You entered incorrect value. Try again!" << endl << endl;
+		}
+		else break;
+	}
 
 	// создаю динамический массив
 	int* arrayNumbers = new int[lengthArray];
