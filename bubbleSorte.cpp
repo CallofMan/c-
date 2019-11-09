@@ -2,6 +2,7 @@
 #include <ctime>
 #include <string>
 #include <random>
+#include <algorithm>
 
 // просто инициализация
 int lengthArray = 0;
@@ -61,9 +62,10 @@ int* arraySort(int* arrayRandom)
 	int temp = 0;
 	bool key = true;
 
-	// 
 	while (key == true)
 	{
+		using std::swap;
+
 		// если все элементы отсортированы, то переменная не изменится и сортировка закончится
 		key = false;
 
@@ -72,9 +74,13 @@ int* arraySort(int* arrayRandom)
 			// если правое число больше левого, то меняю их местами
 			if (arrayRandom[i + 1] < arrayRandom[i])
 			{
+				swap(arrayRandom[i + 1], arrayRandom[i]);
+
+				/*
 				temp = arrayRandom[i + 1];
 				arrayRandom[i + 1] = arrayRandom[i];
 				arrayRandom[i] = temp;
+				*/
 
 				key = true;
 			}
