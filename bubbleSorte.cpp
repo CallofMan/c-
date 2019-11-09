@@ -9,8 +9,10 @@ int lengthArray = 0;
 // заполняю массив рандомным неповторяющимися числами, длина массива зависит от длины, введённой пользователем
 int* arrayRandom()
 {
-	std::cout << "Enter length of array \n";
-	std::cin >> lengthArray;
+	using namespace std;
+
+	cout << "Enter length of array \n";
+	cin >> lengthArray;
 
 	// создаю динамический массив
 	int* arrayNumbers = new int[lengthArray];
@@ -20,9 +22,9 @@ int* arrayRandom()
 	int randNumber = 0;
 
 	// беру рандомное число
-	std::random_device (rd);
-	std::mt19937 mt(rd());
-	std::uniform_int_distribution<int> dist(1, lengthArray);
+	random_device (rd);
+	mt19937 mt(rd());
+	uniform_int_distribution<int> dist(1, lengthArray);
 
 	while (index != lengthArray)
 	{
@@ -46,7 +48,7 @@ int* arrayRandom()
 		if (key == true)
 		{
 			arrayNumbers[index] = randNumber;
-			std::cout << index + 1 << ": " << arrayNumbers[index] << std::endl;
+			cout << index + 1 << ": " << arrayNumbers[index] << endl;
 			index++;
 		}
 	}
@@ -84,20 +86,22 @@ int* arraySort(int* arrayRandom)
 
 int main()
 {
+	using namespace std;
+
 	int* sortedArray = arraySort(arrayRandom());
 
-	std::cout << std::endl;
+	cout << endl;
 
 	// просто вывод отсортированного массива
 	for (int i = 0; i < lengthArray; i++)
 	{
-		std::cout << i + 1 << ": " << sortedArray[i] << std::endl; 
+		cout << i + 1 << ": " << sortedArray[i] << endl; 
 	}
 
 	// это чтобы консоль не дропалась
-	std::cin.clear();
-	std::cin.ignore(32767, '\n');
-	std::cin.get();
+	cin.clear();
+	cin.ignore(32767, '\n');
+	cin.get();
 
 	return 0;
 }
