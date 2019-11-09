@@ -124,7 +124,7 @@ int main()
 {
 	using namespace std;
 
-	int* sortedArray = arraySort(arrayRandom());
+	int *sortedArray = arraySort(arrayRandom());
 
 	cout << "Sort array: " << endl;
 
