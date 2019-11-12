@@ -9,7 +9,7 @@ struct Students
 	int point;
 };
 
-// сортировка
+// Г±Г®Г°ГІГЁГ°Г®ГўГЄГ 
 void sortStudents(Students *students, int &length)
 {
 	for (int startIndex = 0; startIndex < length; ++startIndex)
@@ -31,7 +31,7 @@ int main()
 	
 	int quantityStudents = 0;
 	
-	// вводим значение с проверочкой 
+	// ГўГўГ®Г¤ГЁГ¬ Г§Г­Г Г·ГҐГ­ГЁГҐ Г± ГЇГ°Г®ГўГҐГ°Г®Г·ГЄГ®Г© 
 	while (true)
 	{
 		cout << "Enter a quantity students (0 to 100): ";
@@ -47,16 +47,16 @@ int main()
 		else break;
 	}
 	
-	// создаю массив с типом данных нашей структуры  
+	// Г±Г®Г§Г¤Г Гѕ Г¬Г Г±Г±ГЁГў Г± ГІГЁГЇГ®Г¬ Г¤Г Г­Г­Г»Гµ Г­Г ГёГҐГ© Г±ГІГ°ГіГЄГІГіГ°Г»  
 	Students *students = new Students[quantityStudents];
 	
-	// заполнение массива пользовательскими значениями		
+	// Г§Г ГЇГ®Г«Г­ГҐГ­ГЁГҐ Г¬Г Г±Г±ГЁГўГ  ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГјГ±ГЄГЁГ¬ГЁ Г§Г­Г Г·ГҐГ­ГЁГїГ¬ГЁ		
 	for (int index = 0; index < quantityStudents; ++index)
 	{
 		cout << "Enter a student's name: ";
 		cin >> students[index].name;
 		
-		// цикл проверки на корректное значение
+		// Г¶ГЁГЄГ« ГЇГ°Г®ГўГҐГ°ГЄГЁ Г­Г  ГЄГ®Г°Г°ГҐГЄГІГ­Г®ГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ
 		while (true)
 		{
 			cout << "Enter a student's point: ";
@@ -75,10 +75,10 @@ int main()
 	
 	int &length = quantityStudents;
 	
-	// сортируем
+	// Г±Г®Г°ГІГЁГ°ГіГҐГ¬
 	sortStudents(students, length);
 	
-	// вывод результата
+	// ГўГ»ГўГ®Г¤ Г°ГҐГ§ГіГ«ГјГІГ ГІГ 
 	for (int index = 0; index < quantityStudents; ++index)
 	{
 		cout << students[index].name << " got a grade of " << students[index].point << endl;
