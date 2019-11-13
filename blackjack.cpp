@@ -205,8 +205,6 @@ int main()
 {
 	using namespace std;
 
-	srand(static_cast<unsigned int>(time(0)));
-
 	array <Card, 52> deck;
 
 	int cardIndex = 0;
@@ -238,13 +236,15 @@ int main()
 
 	*/
 
-	shuffleDeck(deck);
-
 	YourDestiny resultGame;
 
-	// cout << endl;
+	// выполнение программы
 	while (true)
 	{
+		srand(static_cast<unsigned int>(time(0)));
+
+		shuffleDeck(deck);
+
 		YourDestiny resultGame{ (playBlackjack(deck)) };
 
 		if (resultGame == YourDestiny::WIN)
