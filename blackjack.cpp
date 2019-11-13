@@ -128,7 +128,7 @@ int getCardValue(const Card& card)
 	return 0;
 }
 
-bool playBlackjack(const std::array<Card, 52> &deck)
+bool playBlackjack(const std::array<Card, 52>& deck)
 {
 	using namespace std;
 
@@ -147,45 +147,45 @@ bool playBlackjack(const std::array<Card, 52> &deck)
 
 		scorePlayer += getCardValue(*cardPtr++);
 	}
-	
+
 	char key = 'e';
 
 	// ход игрока
 	do
 	{
+		// проверка на проигрыш игрока
 		if (key == 'h')
 		{
-			scorePlayer += getCardValue(*cardPtr++);
+			if (scorePlayer + getCardValue(*cardPtr) > 21)
+			{
+				cout << "You result score is " << scorePlayer + getCardValue(*cardPtr++) << endl;
+				return false;
+			}
+			else	scorePlayer += getCardValue(*cardPtr++);
 		}
 
-		cout << "Your score " << scorePlayer << " now." <<
+		cout << "Your score is " << scorePlayer << " now." <<
 			endl << "Will you want to hit or to stand? (h / s): ";
-		
+
 		cin >> key;
-	} 
-	while (key != 's');
-
-	// проверка на проигрыш игрока во время его хода
-	if (scorePlayer > 21)
-		return false;
-
-	cout << "Your score " << scorePlayer << " now." << endl;
+	} while (key != 's');
 
 	// ход диллера 
 	do
 	{
-		cout << "Dealer's score is " << scoreDealer << 
+		cout << "Dealer's score is " << scoreDealer <<
 			endl << "Dealer is taking card." << endl;
 
-		scoreDealer += getCardValue(*cardPtr++);
-	} 
-	while (scoreDealer < 17);
+		// проверка на проигрыш диллера
+		if ((scoreDealer + getCardValue(*cardPtr)) > 21)
+		{
+			cout << "Dealer's result score is " << scoreDealer + getCardValue(*cardPtr++) << endl;
+			return true;
+		}
+		else	scoreDealer += getCardValue(*cardPtr++);
+	} while (scoreDealer < 17);
 
-	// проверка на проигрыш диллера во время его хода
-	if (scoreDealer > 21)
-		return true;
-
-	cout << "Dealer's score is " << scoreDealer << endl;
+	cout << "Dealer's result score is " << scoreDealer << endl;
 
 	// выявление победителя
 	if (scorePlayer > scoreDealer)
@@ -215,19 +215,19 @@ int main()
 			++cardIndex;
 		}
 	}
-	
+
 	/*
 
-	// до тасовки
-	printDeck(deck);
+		// до тасовки
+		printDeck(deck);
 
-	// тасовка колоды
-	shuffleDeck(deck);
+		// тасовка колоды
+		shuffleDeck(deck);
 
-	cout << endl;
+		cout << endl;
 
-	// после тасовки
-	printDeck(deck);
+		// после тасовки
+		printDeck(deck);
 
 	*/
 
@@ -236,9 +236,9 @@ int main()
 	// cout << endl;
 
 	if (playBlackjack(deck))
-		cout << "You won!";
+		cout << "You won!" << endl;
 	else
-		cout << "You lost!";
+		cout << "You lost!" << endl;
 
 	return 0;
 }
