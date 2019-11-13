@@ -10,7 +10,7 @@ enum CardSuit
 	SUITS_SPADES,		// 1
 	SUITS_DIAMONDS,		// 2
 	SUITS_HEARTS,		// 3
-	MAX_SUIT,			// 4
+	MAX_SUIT,		// 4
 };
 
 enum CardRank
@@ -24,18 +24,18 @@ enum CardRank
 	RANK_8, 		// 6
 	RANK_9, 		// 7
 	RANK_10, 		// 8
-	RANK_VALET, 	// 9
-	RANK_QUEEN, 	// 10
-	RANK_KING,  	// 11
-	RANK_ACE,   	// 12
-	MAX_RANK,   	// 13
+	RANK_VALET, 		// 9
+	RANK_QUEEN, 		// 10
+	RANK_KING,  		// 11
+	RANK_ACE,   		// 12
+	MAX_RANK,   		// 13
 };
 
 enum class YourDestiny
 {
-	LOSE,		// 0
-	WIN,		// 1
-	DRAW,		// 2
+	LOSE,			// 0
+	WIN,			// 1
+	DRAW,			// 2
 };
 
 struct Card
@@ -83,8 +83,6 @@ void printDeck(const std::array<Card, 52>& deck)
 		printCard(card);
 		std::cout << ' ';
 	}
-
-	// std::cout << std::endl;
 }
 
 void swapCard(Card& card1, Card& card2)
@@ -223,21 +221,6 @@ int main()
 			++cardIndex;
 		}
 	}
-
-	/*
-
-		// до тасовки
-		printDeck(deck);
-
-		// тасовка колоды
-		shuffleDeck(deck);
-
-		cout << endl;
-
-		// после тасовки
-		printDeck(deck);
-
-	*/
 
 	YourDestiny resultGame;
 
