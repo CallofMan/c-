@@ -10,7 +10,7 @@ enum CardSuit
 	SUITS_SPADES,		// 1
 	SUITS_DIAMONDS,		// 2
 	SUITS_HEARTS,		// 3
-	MAX_SUIT,		// 4
+	MAX_SUIT,			// 4
 };
 
 enum CardRank
@@ -24,11 +24,17 @@ enum CardRank
 	RANK_8, 		// 6
 	RANK_9, 		// 7
 	RANK_10, 		// 8
-	RANK_VALET, 		// 9
-	RANK_QUEEN, 		// 10
-	RANK_KING,  		// 11
-	RANK_ACE,   		// 12
-	MAX_RANK,   		// 13
+	RANK_VALET, 	// 9
+	RANK_QUEEN, 	// 10
+	RANK_KING,  	// 11
+	RANK_ACE,   	// 12
+	MAX_RANK,   	// 13
+};
+
+enum class YourDestiny
+{
+	LOSE,		// 0
+	WIN,		// 1
 };
 
 struct Card
@@ -128,7 +134,7 @@ int getCardValue(const Card& card)
 	return 0;
 }
 
-bool playBlackjack(const std::array<Card, 52>& deck)
+YourDestiny playBlackjack(const std::array<Card, 52>& deck)
 {
 	using namespace std;
 
@@ -153,13 +159,13 @@ bool playBlackjack(const std::array<Card, 52>& deck)
 	// ход игрока
 	do
 	{
-		// проверка на проигрыш игрока
 		if (key == 'h')
 		{
+			// проверка на проигрыш игрока
 			if (scorePlayer + getCardValue(*cardPtr) > 21)
 			{
-				cout << "You result score is " << scorePlayer + getCardValue(*cardPtr++) << endl;
-				return false;
+				cout << "You result score is " << scorePlayer + getCardValue(*cardPtr++) << endl << endl;
+				return YourDestiny::LOSE;
 			}
 			else	scorePlayer += getCardValue(*cardPtr++);
 		}
@@ -169,6 +175,8 @@ bool playBlackjack(const std::array<Card, 52>& deck)
 
 		cin >> key;
 	} while (key != 's');
+
+	cout << endl;
 
 	// ход диллера 
 	do
@@ -180,18 +188,17 @@ bool playBlackjack(const std::array<Card, 52>& deck)
 		if ((scoreDealer + getCardValue(*cardPtr)) > 21)
 		{
 			cout << "Dealer's result score is " << scoreDealer + getCardValue(*cardPtr++) << endl;
-			return true;
+			return YourDestiny::WIN;
 		}
 		else	scoreDealer += getCardValue(*cardPtr++);
 	} while (scoreDealer < 17);
 
-	cout << "Dealer's result score is " << scoreDealer << endl;
+	cout << "Dealer's result score is " << scoreDealer << endl << endl;
 
 	// выявление победителя
 	if (scorePlayer > scoreDealer)
-		return true;
-	else
-		return false;
+		return YourDestiny::WIN;
+	else	return YourDestiny::LOSE;
 }
 
 int main()
@@ -233,12 +240,30 @@ int main()
 
 	shuffleDeck(deck);
 
+	YourDestiny resultGame;
+
 	// cout << endl;
+	while (true)
+	{
+		YourDestiny resultGame{ (playBlackjack(deck)) };
 
-	if (playBlackjack(deck))
-		cout << "You won!" << endl;
-	else
-		cout << "You lost!" << endl;
+		if (resultGame == YourDestiny::WIN)
+			cout << "You won!" << endl << endl;
+		else if (resultGame == YourDestiny::LOSE)
+			cout << "You lost!" << endl << endl;
+		else cout << "Draw!" << endl << endl;
 
+		cout << "You want play again? (y / n): ";
+		char exit;
+		cin >> exit;
+
+		if (exit == 'y')
+		{
+			cout << endl;
+			continue;
+		}
+		else if (exit == 'n')
+			break;
+	}
 	return 0;
 }
