@@ -10,7 +10,7 @@ enum CardSuit
 	SUITS_SPADES,		// 1
 	SUITS_DIAMONDS,		// 2
 	SUITS_HEARTS,		// 3
-	MAX_SUIT,		// 4
+	MAX_SUIT,			// 4
 };
 
 enum CardRank
@@ -24,17 +24,18 @@ enum CardRank
 	RANK_8, 		// 6
 	RANK_9, 		// 7
 	RANK_10, 		// 8
-	RANK_VALET, 		// 9
-	RANK_QUEEN, 		// 10
-	RANK_KING,  		// 11
-	RANK_ACE,   		// 12
-	MAX_RANK,   		// 13
+	RANK_VALET, 	// 9
+	RANK_QUEEN, 	// 10
+	RANK_KING,  	// 11
+	RANK_ACE,   	// 12
+	MAX_RANK,   	// 13
 };
 
 enum class YourDestiny
 {
-	LOSE,			// 0
-	WIN,			// 1
+	LOSE,		// 0
+	WIN,		// 1
+	DRAW,		// 2
 };
 
 struct Card
@@ -198,7 +199,9 @@ YourDestiny playBlackjack(const std::array<Card, 52>& deck)
 	// выявление победителя
 	if (scorePlayer > scoreDealer)
 		return YourDestiny::WIN;
-	else	return YourDestiny::LOSE;
+	else if (scorePlayer < scoreDealer)
+		return YourDestiny::LOSE;
+	else return YourDestiny::DRAW;
 }
 
 int main()
