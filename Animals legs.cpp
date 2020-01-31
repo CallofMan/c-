@@ -3,7 +3,7 @@
 
 enum class Animal
 {
-	PIG,
+	PIG, //тест гита
 	CHICKEN,
 	GOAT,
 	CAT,
